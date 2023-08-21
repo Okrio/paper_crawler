@@ -61,10 +61,10 @@ def get_daily_code(DateToday,cats):
             paper_author = v["authors"]
             paper_title1 = v["title"]
             paper_url = v["url"]
-            paper_abstract = v["abstract"]
+            # paper_abstract = v["abstract"]
             # url = base_url + _id
             content[_id] = f"|{paper_type.upper()}|{paper_title}|{paper_url}|{paper_author}|\n"
-            content1[paper_type.upper()] = f"|{paper_type.upper()}|{paper_title}|{paper_abstract}|{paper_url}|{paper_author}|\n"
+            content1[paper_type.upper()] = f"|{paper_type.upper()}|{paper_title}|{paper_url}|{paper_author}|\n"
 
         # try:
         #     r = requests.get(url).json()
@@ -89,7 +89,7 @@ def update_daily_json(filename,data_all):
         else:
             m = json.loads(content)
     
-    #å°†datasæ›´æ–°åˆ°mä¸?
+    #
     for data in data_all:
         m.update(data)
 
@@ -125,7 +125,7 @@ def json_to_md(filename):
                 continue
             # the head of each part
             f.write(f"## {day}\n")
-            f.write("|type|paper|abstract|url|author|\n" + "|---|---|---|---|---|\n")
+            f.write("|type|paper|url|author|\n" + "|---|---|---|---|\n")
             for k,v in day_content.items():
                 f.write(v)
     
@@ -134,9 +134,9 @@ def json_to_md(filename):
 if __name__ == "__main__":
 
     DateToday = datetime.date.today()
-    N = 3# ÍùÇ°²éÑ¯µÄÌìÊı
+    N = 1# ï¿½ï¿½Ç°ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     data_all = []
-    for i in range(2,N):
+    for i in range(0,N):
         day = str(DateToday + timedelta(-i))
         # you can add the categories in cats
         cats = {
